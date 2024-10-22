@@ -1,35 +1,25 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
 import './search-box.styles.css';
 
-class SearchBox extends Component {
-  static propTypes = {
-    onChangeHandler: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
-    className: PropTypes.string,
-  };
+const SearchBox = ({ onChangeHandler, placeholder = 'search...', className = '' }) => {
+  const addClassNames = `search-box ${className}`.trim();
 
-  static defaultProps = {
-    placeholder: 'search...',
-    className: '',
-  };
+  return (
+    <div>
+      <input
+        type="search"
+        className={addClassNames}
+        placeholder={placeholder}
+        onChange={onChangeHandler}
+      />
+    </div>
+  );
+};
 
-  render() {
-    const { onChangeHandler, placeholder, className } = this.props;
-    const addClassNames = `search-box ${className}`.trim();
-
-    console.log('rendering search box');
-    return (
-      <div>
-        <input
-          type="search"
-          className={addClassNames}
-          placeholder={placeholder}
-          onChange={onChangeHandler}
-        />
-      </div>
-    );
-  }
-}
+SearchBox.propTypes = {
+  onChangeHandler: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+};
 
 export default SearchBox;
